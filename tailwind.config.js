@@ -5,10 +5,18 @@ export default {
 		extend: {
 			container: {
 				center: true
+			},
+			fontFamily: {
+				monospace: ['Inconsolata Variable'],
+				sans: ['Inter Variable'],
+				serif: ['Lora Variable']
 			}
 		}
 	},
-	plugins: [require('daisyui')],
+	plugins:
+		/* eslint-disable */
+		[require('daisyui')],
+	/* eslint-enable */
 	daisyui: {
 		themes: ['light', 'dark']
 	}

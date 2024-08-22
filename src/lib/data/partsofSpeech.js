@@ -1,0 +1,1 @@
+export const partsofSpeech = ['noun', 'pronoun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'inter'];

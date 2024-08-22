@@ -1,6 +1,12 @@
 <script>
-  import "../app.css";
-  import { themeChange } from 'theme-change';
+	// Supports weights 200-900
+	import '@fontsource-variable/inconsolata';
+	// Supports weights 100-900
+	import '@fontsource-variable/inter';
+	// Supports weights 400-700
+	import '@fontsource-variable/lora';
+	import '../app.css';
+	import { themeChange } from 'theme-change';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	onMount(async () => {
@@ -9,10 +15,8 @@
 	const theme = browser && localStorage.getItem('theme');
 </script>
 
-
-
 <nav class="navbar flex md:px-36">
-	<div class="navbar-start ">
+	<div class="navbar-start">
 		<enhanced:img src="/src/lib/assets/images/logo.svg" alt="dictionary-logo" />
 	</div>
 	<div class="flex navbar-end">
@@ -21,9 +25,9 @@
 				<details>
 					<summary>Serif</summary>
 					<ul class="bg-base-100 rounded-t-none p-2">
-						<li><a href={'#'}>Serif</a></li>
-						<li><a href={'#'}>Mono</a></li>
-						<li><a href={'#'}>Roboto</a></li>
+						<li><a href={'#'}>sans</a></li>
+						<li><a href={'#'}>serif</a></li>
+						<li><a href={'#'}>mono</a></li>
 					</ul>
 				</details>
 			</li>
