@@ -8,11 +8,15 @@
 	import '../app.css';
 	import { themeChange } from 'theme-change';
 	import { browser } from '$app/environment';
+
 	import { onMount } from 'svelte';
+
 	onMount(async () => {
 		themeChange(false);
 	});
 	const theme = browser && localStorage.getItem('theme');
+	let word = '';
+	let empty = false;
 </script>
 
 <nav class="navbar flex md:px-36">
@@ -59,5 +63,35 @@
 		</label>
 	</div>
 </nav>
+
+<section>
+	<div class="flex justify-center items-center pt-32">
+		<form
+			on:submit={(e) => {
+				if (!word) {
+					e.preventDefault();
+					empty = true;
+				}
+			}}
+			action="/{word}"
+			class="relative p-3 w-full max-w-lg text-base"
+		>
+			<input
+				class="input input-bordered w-full rounded-lg"
+				autocomplete="off"
+				required
+				on:blur={() => (empty = false)}
+				class:border-danger={empty}
+				class:focus:border-danger={empty}
+				bind:value={word}
+			/>
+
+			<button type="submit" class="absolute right-3 top-6 w-6 h-6">
+				<enhanced:img src="/src/lib/assets/images/icon-search.svg" alt="icon-search" />
+			</button>
+		</form>
+	</div>
+</section>
+
 
 <slot />
