@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { PageServerData } from '../$types';
+	import type { PageData } from '../$types';
 
-	export let data: PageServerData;
+	export let data: PageData;
 
 	$: definition = data.definition[0];
 	$: phonetic = definition.phonetics.find((p: any) => Boolean(p.audio));

@@ -3,8 +3,8 @@ import type { PageLoad } from './$types';
 
 const URL = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
 
-export const load: PageLoad = async ({ fetch, params: { word } }) => {
-	const response = await fetch(`${URL}${word}`);
+export const load: PageLoad = async ({ fetch, params }) => {
+	const response = await fetch(`${URL}${params.word}`);
 	const definition = await response.json();
 
 	if (!response.ok) {
