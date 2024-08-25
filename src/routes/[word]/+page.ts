@@ -9,7 +9,7 @@ export const load: PageLoad = async ({ fetch, params: { word } }) => {
 
 	if (!response.ok) {
 		error(404, {
-			message: 'Word not found'
+			message: 'Sorry! That is not an English word. Perhaps check the spelling. 🤨'
 		});
 	}
 	return {
