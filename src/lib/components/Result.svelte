@@ -1,38 +1,27 @@
-<script lang="ts">
-	import type { PageData } from '../$types';
-	import Newwindow from '$lib/components/Newwindow.svelte';
-
-	export let data: PageData;
-
-	$: definition = data.definition[0];
-	$: phonetic = definition.phonetics.find((p: any) => p.audio);
-
-	const playAudio = () => {
-		const audio = new Audio(phonetic.audio);
-		audio.load();
-		audio.play();
-	};
-</script>
-
-<section class="sm:max-w-lg mt-6 sm:mt-11 mx-auto">
+<!-- 
+<section class="w-full mt-6 sm:mt-11">
 	<div class="flex justify-between items-center">
 		<div>
 			<h1 class="text-[32px] sm:text-6.5xl font-bold sm:leading-[77px] mb-2" aria-label="word">
-				{definition.word}
+				{data.word}
 			</h1>
-
-			<h2 class="text-2xl text-violet-500" aria-label="phonetic">{definition.phonetic ?? ''}</h2>
+			{#if data.phonetic}
+				<h2 class="text-2xl text-purple" aria-label="phonetic">
+					{data.phonetic}
+				</h2>
+			{/if}
 		</div>
 
 		{#if phonetic}
 			<button
-				class="player h-12 w-12 sm:h-[75px] sm:w-[75px]
+				class="
+                    h-12 w-12 sm:h-[75px] sm:w-[75px]
                     rounded-full
                     flex items-center justify-center
                     group
                     bg-purple-normal hover:bg-purple
-                    transition-all duration-300"
-				name="play"
+                    transition-all duration-300
+                    "
 				on:click={playAudio}
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75"
@@ -48,7 +37,7 @@
 	</div>
 
 	<ul>
-		{#each definition.meanings as meaning}
+		{#each data.meanings as meaning, i (meaning.partOfSpeech + i)}
 			<li class="mt-8 sm:mt-10">
 				<div
 					class="
@@ -76,14 +65,14 @@
 					{/each}
 				</ul>
 
-				{#if meaning.synonyms}
+				{#if meaning.synonyms.length}
 					<div class="flex gap-6" aria-label="synonyms">
 						<h4 class="text-white-400 text-base sm:text-lg">Synonyms</h4>
 						<ul class="flex flex-wrap">
-							{#each meaning.synonyms as synonym}
+							{#each meaning.synonyms as synonym, i (synonym + i)}
 								<li aria-label="synonym">
 									<a
-										class="text-base sm:text-xl font-bold text-purple-500 cursor-pointer hover:underline hover:underline-offset-4 mr-2"
+										class="text-base sm:text-xl font-bold text-purple cursor-pointer hover:underline hover:underline-offset-4 mr-2"
 										href={synonym}>{synonym}</a
 									>
 								</li>
@@ -91,14 +80,14 @@
 						</ul>
 					</div>
 				{/if}
-				{#if meaning.antonyms}
+				{#if meaning.antonyms.length}
 					<div class="flex gap-6 mt-3" aria-label="antonyms">
 						<h4 class="text-white-400 text-base sm:text-lg">Antonyms</h4>
 						<ul class="flex flex-wrap">
-							{#each meaning.antonyms as antonym}
+							{#each meaning.antonyms as antonym, i (antonym + i)}
 								<li aria-label="antonym">
 									<a
-										class="text-base sm:text-xl font-bold text-purple-500 cursor-pointer hover:underline hover:underline-offset-4 mr-2"
+										class="text-base sm:text-xl font-bold text-purple cursor-pointer hover:underline hover:underline-offset-4 mr-2"
 										href={antonym}>{antonym}</a
 									>
 								</li>
@@ -111,23 +100,20 @@
 	</ul>
 
 	<hr class="h-0.5 bg-white-300 dark:bg-black-100 opacity-100 border-0 mt-8 sm:mt-10 mb-5" />
-</section>
 
-<hr class="border-border mb-5 dark:border-border-dark mt-8 sm:mt-10 mb-5" />
- 
-
-	{#if definition.sourceUrls.length}
-		<div class="flex flex-col sm:flex-row sm:mx-28" aria-label="source url">
+	{#if data.sourceUrls.length}
+		<div class="flex flex-col sm:flex-row" aria-label="source url">
 			<h4 class="text-white-400 mb-1 sm:mr-6 underline underline-offset-2">Source</h4>
 			<a
-				href={definition.sourceUrls[0]}
+				href={data.sourceUrls[0]}
 				class="flex items-center underline underline-offset-2"
 				target="_blank"
 			>
 				<span class="mr-2 text-sm text-black-200 dark:text-white-100 hover:underline"
-					>{definition.sourceUrls[0]}</span
+					>{data.sourceUrls[0]}</span
 				>
 				<Newwindow />
 			</a>
 		</div>
 	{/if}
+</section> -->

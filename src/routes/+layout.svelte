@@ -6,15 +6,7 @@
 	// Supports weights 400-700
 	import '@fontsource-variable/lora';
 	import '../app.css';
-	import { themeChange } from 'theme-change';
-	import { browser } from '$app/environment';
 
-	import { onMount } from 'svelte';
-
-	onMount(async () => {
-		themeChange(false);
-	});
-	const theme = browser && localStorage.getItem('theme');
 	let word = '';
 	let empty = false;
 </script>
@@ -24,7 +16,7 @@
 		<enhanced:img src="/src/lib/assets/images/logo.svg" alt="dictionary-logo" />
 	</div>
 	<div class="flex navbar-end">
-		<ul class="menu menu-horizontal sm:px-1 md:px-">
+		<ul class="menu menu-horizontal px-3">
 			<li>
 				<details>
 					<summary>Serif</summary>
@@ -38,14 +30,7 @@
 		</ul>
 		<hr />
 		<label class="flex cursor-pointer gap-2">
-			<input
-				type="checkbox"
-				data-toggle-theme="light, dark"
-				data-act-class="ACTIVECLASS"
-				value="light"
-				class="toggle theme-controller bg-violet-500"
-				checked={theme === 'light'}
-			/>
+			<input type="checkbox" value="dark" class="toggle theme-controller bg-violet-500" />
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="20"
@@ -76,14 +61,17 @@
 			action="/{word}"
 			class="relative p-3 w-full max-w-lg text-base"
 		>
-			<input
+
+		<!-- Use CSS for form validation -->
+			<input id="search"
 				class="input input-bordered w-full rounded-lg"
 				autocomplete="off"
 				required
 				on:blur={() => (empty = false)}
-				class:border-danger={empty}
-				class:focus:border-danger={empty}
+				class:border-red-500={empty}
+				class:focus:border-red-500={empty}
 				bind:value={word}
+				
 			/>
 
 			<button type="submit" class="absolute right-3 top-6 w-6 h-6">
@@ -92,6 +80,5 @@
 		</form>
 	</div>
 </section>
-
 
 <slot />
