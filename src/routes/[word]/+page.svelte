@@ -14,10 +14,10 @@
 	};
 </script>
 
-<section class="sm:max-w-lg mt-6 sm:mt-11 mx-auto">
+<section class="sm:max-w-lg mt-6 sm:mt-11 mx-auto p-2">
 	<div class="flex justify-between items-center">
 		<div>
-			<h1 class="text-[32px] sm:text-6.5xl font-bold sm:leading-[77px] mb-2" aria-label="word">
+			<h1 class="text-[32px] sm:text-7xl font-bold sm:leading-[77px] mb-2" aria-label="word">
 				{definition.word}
 			</h1>
 
@@ -51,25 +51,20 @@
 		{#each definition.meanings as meaning}
 			<li class="mt-8 sm:mt-10">
 				<div
-					class="
-           flex items-center
-        "
+					class="py-3 flex items-center after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:after:border-neutral-600 italic text-lg sm:text-2xl font-bold mr-5"
+					aria-label="part of speech"
 				>
-					<span class="italic text-lg sm:text-2xl font-bold mr-5" aria-label="part of speech">
-						{meaning.partOfSpeech}
-					</span>
-
-					<hr class="h-0.5 w-full mt-2 bg-white-300 dark:bg-black-100 border-0" />
+					{meaning.partOfSpeech}
 				</div>
 
-				<h4 class="text-white-400 mt-4 mb-4 sm:mb-6 text-base sm:text-lg">Meaning</h4>
+				<h4 class="text-white mt-4 mb-4 sm:mb-6 text-base sm:text-lg">Meaning</h4>
 
-				<ul class="flex flex-col gap-3 ml-4 sm:ml-10 list-disc marker:text-purple mb-4">
+				<ul class="flex flex-col gap-3 ml-4 sm:ml-10 list-disc marker:text-purple-500 mb-4">
 					{#each meaning.definitions as definition (definition.definition)}
 						<li class="text-[15px] sm:text-lg">
 							<span class="block" aria-label="definition">{definition.definition}</span>
 							{#if definition.example}
-								<span class="text-grey mt-2 block" aria-label="example">"{definition.example}"</span
+								<span class="text-gray-400 mt-2 block" aria-label="example">"{definition.example}"</span
 								>
 							{/if}
 						</li>
@@ -111,10 +106,7 @@
 	</ul>
 
 	<hr class="h-0.5 bg-white-300 dark:bg-black-100 opacity-100 border-0 mt-8 sm:mt-10 mb-5" />
-</section>
-
-<hr class="border-border mb-5 dark:border-border-dark mt-8 sm:mt-10 mb-5" />
- 
+	<hr class="border-border mb-5 dark:border-border-dark mt-8 sm:mt-10 mb-5" />
 
 	{#if definition.sourceUrls.length}
 		<div class="flex flex-col sm:flex-row sm:mx-28" aria-label="source url">
@@ -131,3 +123,6 @@
 			</a>
 		</div>
 	{/if}
+</section>
+
+

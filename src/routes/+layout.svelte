@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	// Supports weights 200-900
 	import '@fontsource-variable/inconsolata';
 	// Supports weights 100-900
@@ -7,16 +7,24 @@
 	import '@fontsource-variable/lora';
 	import '../app.css';
 
+	import Moon from '$lib/components/Moon.svelte';
+	// import { ModeWatcher } from 'mode-watcher';
+	import { themeChange } from 'theme-change';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import LightSwitch from '$lib/components/LightSwitch.svelte';
+
 	let word = '';
 	let empty = false;
 </script>
 
+<!-- <svelte:head><ModeWatcher /></svelte:head> -->
 <nav class="navbar flex md:px-36">
 	<div class="navbar-start">
 		<enhanced:img src="/src/lib/assets/images/logo.svg" alt="dictionary-logo" />
 	</div>
 	<div class="flex navbar-end">
-		<ul class="menu menu-horizontal px-3">
+		<ul class="menu menu-horizontal">
 			<li>
 				<details>
 					<summary>Serif</summary>
@@ -28,25 +36,14 @@
 				</details>
 			</li>
 		</ul>
-		<hr />
-		<label class="flex cursor-pointer gap-2">
-			<input type="checkbox" value="dark" class="toggle theme-controller bg-violet-500" />
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="20"
-				height="20"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				class="dark: stroke-violet-500"
-			>
-				<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-			</svg>
-		</label>
 	</div>
+	<hr class="h-6 w-[1px] bg-zinc-300 dark:bg-zinc-100" />
+	<!-- <input type="checkbox" value="black" class="toggle theme-controller mx-2" /> -->
+	<div class="px-2">
+		<LightSwitch />
+	</div>
+
+	<Moon />
 </nav>
 
 <section>
@@ -61,17 +58,13 @@
 			action="/{word}"
 			class="relative p-3 w-full max-w-lg text-base"
 		>
-
-		<!-- Use CSS for form validation -->
-			<input id="search"
+			<!-- Use CSS for form validation -->
+			<input
+				id="search"
 				class="input input-bordered w-full rounded-lg"
 				autocomplete="off"
 				required
-				on:blur={() => (empty = false)}
-				class:border-red-500={empty}
-				class:focus:border-red-500={empty}
 				bind:value={word}
-				
 			/>
 
 			<button type="submit" class="absolute right-3 top-6 w-6 h-6">

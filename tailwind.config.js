@@ -3,6 +3,7 @@ import daisyui from 'daisyui';
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,svelte,js,ts}'],
+	darkMode: 'class',
 	theme: {
 		extend: {
 			container: {
@@ -15,6 +16,8 @@ export default {
 			}
 		}
 	},
-	plugins: [daisyui],
-	
+	daisyui: {
+		themes: ['light', 'dark']
+	},
+	plugins: [daisyui]
 };
